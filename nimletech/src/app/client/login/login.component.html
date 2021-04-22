@@ -1,21 +1,17 @@
 <div class="login-container" (keyup.enter)="submit()">
     <div [@vendorAnimation]="fading" style="display:none">
-      <div class="t-top">
-        <img src="../../../../assets/close-button.svg"   class="close-button"  (click)="onCancel()">
-      </div>
-  
       <div id="login" class="container">
         <div class="row">
           <div class="col seek-commu px-0">
             <div class="lb-top1">
-              <span class="lb1">seekaya</span><br />
-              <span class="lb2">#community</span>
+              <span class="lb1">nimletech</span><br />
+              <span class="lb2">#demo</span>
             </div>
           </div>
         </div>
-  
+
         <div class="row"><div class="col lbl-login px-0">Sign In</div></div>
-  
+
         <form>
             <div class="row row-btn margin-top-20">
               <div class="col px-0">
@@ -33,14 +29,14 @@
                   class="fa fa-check-circle  fa-2x"
                   aria-hidden="true"
                 ></i>
-  
+
                 <!--
                   <mat-error *ngIf="username.invalid"> username is required </mat-error>
                 -->
               </div>
             </div>
-  
-  
+
+
             <div class="row row-btn">
               <div class="col px-0">
                 <input
@@ -64,35 +60,23 @@
                 -->
               </div>
             </div>
-  
+
             <div class="row">
               <div class="col lbl-forgot-regis mb-5 px-0">
                 <span class=""><a href="JavaScript:void(0)" (click)="reset()">Forgot Password?</a></span>
                 <span class="regis-right">Not a member? <a href="JavaScript:void(0)" (click)="onRegister()">Register</a></span>
               </div>
-  
+
               <div *ngIf="message != null" class="col-12 error">{{ message }}</div>
-  
+
               <div class="col-12 my-1 px-0">
                 <button style="width : 100%" mat-raised-button class="loginbtn" (click)="submit()" [disabled]="!loginForm.valid">
                   Sign In
                 </button>
               </div>
             </div>
-  
+
       </form>
-  
-        <div class="row row-btn">
-          <div class="col lbl-or-continue-with">or continue with</div>
-        </div>
-  
-        <!-- <div class="row">
-          <div class="col">
-            <app-login-register-social
-              [regisTrueLoginFalse]="false"
-            ></app-login-register-social>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
