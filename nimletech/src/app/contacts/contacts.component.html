@@ -1,1 +1,22 @@
-<p>contacts works!</p>
+<div class="container py-5">
+    <div class="row">
+    	<div class="col-lg-10 mx-auto shadow">
+	    	<table class="table table-borderless">
+			    <thead>
+			        <tr>
+			            <th>Name</th>
+			            <th>Email</th>
+			            <th>Phone number</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr *ngFor="let contact of contacts">
+			            <td><img src="{{contact.photo ? contact.photo : 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bloch_sphere.svg/423px-Bloch_sphere.svg.png'}}" alt="..." class="rounded-circle" width="75" height="75" style="margin-right: 10px"> <span>{{contact.name}}</span></td>		            		           
+			            <td>{{contact.email}}</td>
+			            <td>{{contact.number}}</td>
+			        </tr>		                
+			    </tbody>
+			</table>
+		</div>
+    </div>
+</div>
