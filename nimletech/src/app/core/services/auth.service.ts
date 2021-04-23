@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import { ApiResponse } from '../models/apiresponse';
 
 @Injectable({
   providedIn: 'root'
@@ -17,20 +19,17 @@ export class AuthService {
     private http: HttpClient
     ) {}
 
-  public setUser(user: User, token: string, expiresAt: number): any {
-
+  public setUser(data: any): any {
     // set new user
-    this.currentUser.username = user.username;
-    this.currentUser.email_address = user.email_address;
-    this.currentUser.phone_number = user.phone_number;
-    this.currentUser.photo = user.photo;
+    this.currentUser.username = data.username;
+    this.currentUser.email_address = data.email_address;
 
     // Set the time that the access token will expire at
     // const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
 
     // set token data
-    localStorage.setItem('access_token', token);
-    localStorage.setItem('expires_at', expiresAt.toString());
+    localStorage.setItem('access_token', data.token);
+    localStorage.setItem('expires_at', data.expiryDate.toString());
 
     // save
     localStorage.setItem('current_user', JSON.stringify(this.currentUser));
@@ -78,12 +77,6 @@ export class AuthService {
     localStorage.removeItem('expires_at');
     localStorage.removeItem('current_user');
 
-    // reset location of vendor
-    localStorage.removeItem('currentLocation');
-    localStorage.removeItem('currentLocationID');
-    localStorage.removeItem('currentLocations');
-
-
     // reset user
     this.currentUser = new User();
 
@@ -114,17 +107,20 @@ export class AuthService {
     if (localStorage.getItem('access_token')) {
       // console.log('Refreshing Token');
       // retrieve new token
-
       try {
-        this.http.get(`${environment.urls.api}/refresh`).subscribe((res: any) => {
+        const options = {
+          headers: new HttpHeaders({
+            accept: 'application/json',
+            token: localStorage.getItem('access_token')
+          })
+        };
+        this.http.get(`${environment.urls.api}/authentication/refresh`, options).subscribe((res: any) => {
           // console.log(res);
 
           // check for valid token
           if (res) {
-
             // set token
             localStorage.setItem('access_token', res.value.token);
-
           } else {
             this.logout();
           }

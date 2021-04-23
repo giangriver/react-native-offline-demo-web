@@ -1,0 +1,163 @@
+<div
+  class="d-flex align-content-center bg-light justify-content-center flex-wrap w-100 h-100"
+>
+  <div class="shadow bg-light h4">
+    <form class="k-form" [formGroup]="resetPasswordForm" novalidate>
+      <div class="bg-primary login-form-header mx-0 row py-3">
+        <a class="left-align mx-auto h4 text-dark" translate>Register Account</a>
+      </div>
+
+      <div *ngIf="!isResetCompleted">
+        <div *ngIf="resetPasswordError" class="h6 row my-2 mx-5">
+          <kendo-formerror class="mx-auto">{{
+            resetPasswordError
+          }}</kendo-formerror>
+        </div>
+        <div class="row mt-3 mx-5 ">
+          <span class="h6 w-100" translate>
+            Enter the information you signed up with
+          </span>
+        </div>
+        <div class="row mt-3 mx-5">
+          <kendo-formfield class="h6 w-100">
+            <kendo-label translate>Email</kendo-label>
+            <div
+              class="py-1 w-100 d-flex align-items-baseline justify-content-start"
+            >
+              <div class="w-100">
+                <input
+                  kendoTextBox
+                  formControlName="emailAddress"
+                  placeholder="Enter your email"
+                  type="text"
+                  (input)="onEmailChange()"
+                />
+              </div>
+              <div>
+                <i
+                  type="button"
+                  class="mx-1 fa fa-times"
+                  *ngIf="showClearEmail"
+                  (click)="clearEmail()"
+                ></i>
+              </div>
+            </div>
+            <kendo-formerror
+              *ngIf="this.resetPasswordForm.controls['emailAddress'].invalid"
+              >{{ getEmailErrorMessage() }}</kendo-formerror
+            >
+          </kendo-formfield>
+        </div>
+        <div class="row mt-3 mx-5">
+          <kendo-formfield class="h6 w-100">
+            <kendo-label translate>Username</kendo-label>
+            <div
+              class="py-1 w-100 d-flex align-items-baseline justify-content-start"
+            >
+              <div class="w-100">
+                <input
+                  kendoTextBox
+                  formControlName="username"
+                  placeholder="Enter your username"
+                  type="text"
+                  (input)="onUsernameChange()"
+                />
+              </div>
+              <div>
+                <i
+                  type="button"
+                  class="mx-1 fa fa-times"
+                  *ngIf="showClearUsername"
+                  (click)="clearUsername()"
+                ></i>
+              </div>
+            </div>
+            <kendo-formerror
+              *ngIf="this.resetPasswordForm.controls['username'].invalid"
+              >{{ getUsernameErrorMessage() }}</kendo-formerror
+            >
+          </kendo-formfield>
+        </div>
+        <div class="row mt-3 mx-5">
+          <kendo-formfield class="h6 w-100">
+            <kendo-label translate>Password</kendo-label>
+            <div
+              class="py-1 w-100 d-flex align-items-baseline justify-content-start"
+            >
+              <div class="w-100">
+                <input
+                  kendoTextBox
+                  formControlName="password"
+                  placeholder="Enter your password"
+                  type="password"
+                  (input)="onPasswordChange()"
+                />
+              </div>
+              <div>
+                <i
+                  type="button"
+                  class="mx-1 fa fa-times"
+                  *ngIf="showClearPassword"
+                  (click)="clearPassword()"
+                ></i>
+              </div>
+            </div>
+            <kendo-formerror
+              *ngIf="this.resetPasswordForm.controls['password'].invalid"
+              >{{ getPasswordErrorMessage() }}</kendo-formerror
+            >
+          </kendo-formfield>
+        </div>
+        <div
+          class="row mt-3 mb-4 justify-content-center align-items-center mx-5"
+        >
+          <div class="col-md-auto ml-2 px-0">
+            <a
+              class="btn text-white btn-secondary mx-0 py-1 login-button"
+              id="cancel-button"
+              (click)="onBackToLoginPage()"
+              translate
+            >
+              Cancel
+            </a>
+          </div>
+          <div class="col-md-auto ml-2 px-0">
+            <button
+              [disabled]="resetPasswordForm.invalid"
+              class="btn mx-0 py-1 btn-primary login-button"
+              id="reset-password-button"
+              (click)="onResetPassword()"
+              translate
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+
+        
+      </div>
+
+      <div *ngIf="isResetCompleted">
+        <div class="row mt-3 mx-5 mt-5 mb-3">
+          <span translate class="h6 w-100">
+            We've sent you a temporary password. Please check your email
+          </span>
+        </div>
+        <div
+          class="row mt-3 mb-4 justify-content-center align-items-center mx-5"
+        >
+          <div class="col-md-auto ml-2 px-0 mb-3">
+            <button
+              class="btn mx-0 py-1 btn-primary login-button"
+              id="back-button"
+              (click)="onBackToLoginPage()"
+              translate
+            >
+              Back to Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

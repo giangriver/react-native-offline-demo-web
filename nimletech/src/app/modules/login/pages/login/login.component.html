@@ -1,0 +1,6 @@
+<app-loader [isLoading]="isLoading"></app-loader>
+<app-login-view
+  (submitEvent)="login($event)"
+  (registerEvent)="onRegister()"
+  [loginError]="loginError"
+></app-login-view>

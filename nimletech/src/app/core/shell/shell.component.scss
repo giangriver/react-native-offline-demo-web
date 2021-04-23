@@ -1,0 +1,24 @@
+.shell-header {
+    height: auto;
+  }
+  
+  .shell-main {
+    flex: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 10px;
+  }
+  
+  .shell-footer {
+    height: 0;
+  }
+  
+  .shell-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  

@@ -5,20 +5,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './client/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginModule } from './modules/login/login.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
-    LoginComponent,
     AppComponent
+  ],
+  exports: [
+    NgbModule
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    CoreModule,
+    NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    LoginModule,
     AppRoutingModule
   ],
   providers: [],

@@ -1,0 +1,100 @@
+<div
+  class="d-flex align-content-center bg-light justify-content-center flex-wrap w-100 h-100"
+>
+  <div class="shadow bg-light h4">
+    <form class="k-form" [formGroup]="loginForm" novalidate>
+      <div class="bg-primary login-form-header mx-0 row py-3">
+        <a class="left-align mx-auto h4 text-dark" translate>Member Log In</a>
+      </div>
+      <div *ngIf="loginError" class="h6 row my-2 mx-5">
+        <kendo-formerror class="mx-auto">{{ loginError }}</kendo-formerror>
+      </div>
+      <div class="row mt-3 mx-5 ">
+        <kendo-formfield class="h6 w-100">
+          <kendo-label translate>Username</kendo-label>
+          <div class="d-flex align-items-baseline justify-content-start">
+            <div class="p-1" v>
+              <input
+                formControlName="username"
+                type="text"
+                kendoTextBox
+                placeholder="Enter your email"
+                (input)="onUserNameChange()"
+              />
+            </div>
+            <div class="p-2">
+              <i
+                type="button"
+                class="fa fa-times"
+                *ngIf="showClearUserName"
+                (click)="clearUserName()"
+              ></i>
+            </div>
+          </div>
+          <!-- <kendo-formerror>
+            Username is required
+          </kendo-formerror> -->
+        </kendo-formfield>
+      </div>
+      <div class="row mt-2 mx-5">
+        <kendo-formfield class="h6 w-100">
+          <kendo-label translate>Password</kendo-label>
+          <div class="d-flex align-items-baseline justify-content-start">
+            <div class="p-1">
+              <input
+                kendoTextBox
+                formControlName="password"
+                placeholder="Enter your password"
+                [type]="hidePassword ? 'password' : 'text'"
+                (input)="onPasswordChange()"
+              />
+            </div>
+            <div class="p-1">
+              <i
+                type="button"
+                [ngClass]="{
+                  'fa-eye-slash': hidePassword,
+                  'fa-eye': !hidePassword,
+                  fa: true
+                }"
+                (click)="hidePassword = !hidePassword"
+              ></i>
+            </div>
+            <div class="p-1">
+              <i
+                type="button"
+                class="fa fa-times"
+                *ngIf="showClearPassword"
+                (click)="clearPassword()"
+              ></i>
+            </div>
+          </div>
+          <!-- <kendo-formerror>
+            Password is required
+          </kendo-formerror> -->
+        </kendo-formfield>
+      </div>
+      <div
+        class="row mt-2 mb-4 h6 justify-content-center align-items-center mx-5"
+      >
+        <div class="col px-0">
+          <a (click)="onRegister()" class="btn px-0" translate
+            >Register</a
+          >
+        </div>
+
+        <div class="col-md-auto ml-2 px-0">
+          <button
+            [disabled]="loginForm.invalid"
+            class="btn mx-0 py-1 btn-primary login-button"
+            id="login-button"
+            (click)="login()"
+            translate
+          >
+            Log In
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

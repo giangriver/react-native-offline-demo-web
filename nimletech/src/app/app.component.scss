@@ -1,0 +1,22 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .app-header {
+    height: auto;
+  }
+  
+  .app-main {
+    flex: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  
+  .app-footer {
+    height: auto;
+  }
+  
