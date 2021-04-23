@@ -1,6 +1,17 @@
-<div class="container py-5">
+<div class="container">
+	<div class="main">
+		<div class="form-group has-search">
+		    <span class="fa fa-search form-control-feedback"></span>
+		    <input type="text" class="form-control" placeholder="Search" [(ngModel)] = "searchTitle" (ngModelChange)="onChangeEvent($event)">
+	  	</div>
+	</div>
+	<div class="actions">
+          <a class="btn btn-primary" [routerLink]="['/contacts/add']">
+            <span class="fa fa-plus" aria-hidden="true"></span> Add contact
+          </a>
+        </div>
     <div class="row">
-    	<div class="col-lg-10 mx-auto shadow">
+    	<div class="col-md-12 shadow">
 	    	<table class="table table-borderless">
 			    <thead>
 			        <tr>
@@ -10,8 +21,9 @@
 			        </tr>
 			    </thead>
 			    <tbody>
-			        <tr *ngFor="let contact of contacts">
-			            <td><img src="{{contact.photo ? contact.photo : 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bloch_sphere.svg/423px-Bloch_sphere.svg.png'}}" alt="..." class="rounded-circle" width="75" height="75" style="margin-right: 10px"> <span>{{contact.name}}</span></td>		            		           
+			        <tr *ngFor="let contact of onSearch()">
+			            <td>
+			            	<img src="{{contact.photo ? contact.photo : 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bloch_sphere.svg/423px-Bloch_sphere.svg.png'}}" alt="..." class="rounded-circle" width="75" height="75" style="margin-right: 10px"> <span>{{contact.name}}</span></td>		            		           
 			            <td>{{contact.email}}</td>
 			            <td>{{contact.number}}</td>
 			        </tr>		                

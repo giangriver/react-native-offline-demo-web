@@ -10,6 +10,7 @@ import { NetworkService } from '../network.service';
 })
 export class ContactsComponent implements OnInit {
 	contacts: Contact[];
+  searchTitle: '';
 
   constructor(private networkService: NetworkService) { }
 
@@ -23,6 +24,15 @@ export class ContactsComponent implements OnInit {
       this.contacts = contactObject["responseData"].contacts;
       console.log(contactObject);
       });
+  }
+
+  onSearch() {
+    return this.searchTitle? this.contacts.filter(item => (item.name.toUpperCase().includes(this.searchTitle.toUpperCase()) ||
+      item.email.toUpperCase().includes(this.searchTitle.toUpperCase()) || item.number.includes(this.searchTitle))) : this.contacts;
+  }
+
+  onChangeEvent(event: any){
+    console.log(event);
   }
 
 }

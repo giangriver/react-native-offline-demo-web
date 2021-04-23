@@ -9,8 +9,8 @@ import { ContactAddComponent } from './contact-add/contact-add.component';
 const routes: Routes = [
   { path: '', redirectTo: '/contacts', pathMatch: 'full' },
   { path: 'contacts', component: ContactsComponent },
-  { path: 'detail/:id', component: ContactDetailComponent },
-  { path: 'add', component: ContactAddComponent }
+  { path: 'contacts/detail/:id', component: ContactDetailComponent },
+  { path: 'contacts/add', component: ContactAddComponent }
 ];
 
 
