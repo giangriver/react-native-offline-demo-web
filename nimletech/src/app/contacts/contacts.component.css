@@ -1,6 +1,6 @@
 .main {
     width: 100%;
-    margin: 50px auto;
+    margin: 10px auto;
 }
 .actions {
     text-align: right;    
@@ -21,4 +21,8 @@
     text-align: center;
     pointer-events: none;
     color: #aaa;
+}
+
+td.content {
+  vertical-align: middle;
 }
