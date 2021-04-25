@@ -2,15 +2,15 @@
   class="d-flex align-content-center bg-light justify-content-center flex-wrap w-100 h-100"
 >
   <div class="shadow bg-light h4">
-    <form class="k-form" [formGroup]="resetPasswordForm" novalidate>
+    <form class="k-form" [formGroup]="registerForm" novalidate>
       <div class="bg-primary login-form-header mx-0 row py-3">
         <a class="left-align mx-auto h4 text-dark" translate>Register Account</a>
       </div>
 
       <div *ngIf="!isResetCompleted">
-        <div *ngIf="resetPasswordError" class="h6 row my-2 mx-5">
+        <div *ngIf="registerError" class="h6 row my-2 mx-5">
           <kendo-formerror class="mx-auto">{{
-            resetPasswordError
+            registerError
           }}</kendo-formerror>
         </div>
         <div class="row mt-3 mx-5 ">
@@ -19,7 +19,7 @@
           </span>
         </div>
         <div class="row mt-3 mx-5">
-          <kendo-formfield class="h6 w-100">
+          <kendo-formfield class="h6 w-75">
             <kendo-label translate>Email</kendo-label>
             <div
               class="py-1 w-100 d-flex align-items-baseline justify-content-start"
@@ -43,13 +43,13 @@
               </div>
             </div>
             <kendo-formerror
-              *ngIf="this.resetPasswordForm.controls['emailAddress'].invalid"
+              *ngIf="this.registerForm.controls['emailAddress'].invalid"
               >{{ getEmailErrorMessage() }}</kendo-formerror
             >
           </kendo-formfield>
         </div>
         <div class="row mt-3 mx-5">
-          <kendo-formfield class="h6 w-100">
+          <kendo-formfield class="h6 w-75">
             <kendo-label translate>Username</kendo-label>
             <div
               class="py-1 w-100 d-flex align-items-baseline justify-content-start"
@@ -60,7 +60,7 @@
                   formControlName="username"
                   placeholder="Enter your username"
                   type="text"
-                  (input)="onUsernameChange()"
+                  (input)="onUserNameChange()"
                 />
               </div>
               <div>
@@ -73,13 +73,13 @@
               </div>
             </div>
             <kendo-formerror
-              *ngIf="this.resetPasswordForm.controls['username'].invalid"
-              >{{ getUsernameErrorMessage() }}</kendo-formerror
+              *ngIf="this.registerForm.controls['username'].invalid"
+              >{{ getUserNameErrMessage() }}</kendo-formerror
             >
           </kendo-formfield>
         </div>
         <div class="row mt-3 mx-5">
-          <kendo-formfield class="h6 w-100">
+          <kendo-formfield class="h6 w-75">
             <kendo-label translate>Password</kendo-label>
             <div
               class="py-1 w-100 d-flex align-items-baseline justify-content-start"
@@ -89,21 +89,32 @@
                   kendoTextBox
                   formControlName="password"
                   placeholder="Enter your password"
-                  type="password"
+                  [type]="hidePassword ? 'password' : 'text'"
                   (input)="onPasswordChange()"
                 />
               </div>
               <div>
                 <i
+                type="button"
+                [ngClass]="{
+                  'fa-eye-slash': hidePassword,
+                  'fa-eye': !hidePassword,
+                  fa: true
+                }"
+                (click)="hidePassword = !hidePassword"
+              ></i>
+              </div>
+              <div class="p-1">
+                <i
                   type="button"
-                  class="mx-1 fa fa-times"
+                  class="fa fa-times"
                   *ngIf="showClearPassword"
                   (click)="clearPassword()"
                 ></i>
               </div>
             </div>
             <kendo-formerror
-              *ngIf="this.resetPasswordForm.controls['password'].invalid"
+              *ngIf="this.registerForm.controls['password'].invalid"
               >{{ getPasswordErrorMessage() }}</kendo-formerror
             >
           </kendo-formfield>
@@ -123,11 +134,10 @@
           </div>
           <div class="col-md-auto ml-2 px-0">
             <button
-              [disabled]="resetPasswordForm.invalid"
+              [disabled]="registerForm.invalid"
               class="btn mx-0 py-1 btn-primary login-button"
               id="reset-password-button"
-              (click)="onResetPassword()"
-              translate
+              (click)="onRegister()"
             >
               Continue
             </button>

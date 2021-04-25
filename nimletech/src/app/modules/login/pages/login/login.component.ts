@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginError: string;
   isLoading = false;
   public acclogin: Login = new Login();
-  
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       username: event.username,
       password: event.password,
       email_address: event.username
-    }
+    };
     this.userService.login(this.acclogin)
       .pipe(
         finalize(() => {

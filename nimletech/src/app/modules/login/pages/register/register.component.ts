@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async onResetPassword(email: any): Promise<any> {}
+  async onRegister(event: any): Promise<any> {}
 
   onBackToLoginPage(): void {
     this.router.navigate(['login'], { replaceUrl: true });
