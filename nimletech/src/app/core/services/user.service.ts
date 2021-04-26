@@ -42,6 +42,21 @@ export class UserService {
     );
   }
 
+  register(user): Observable<ApiResponse> {
+    const options = {
+      headers: new HttpHeaders({
+        accept: 'application/json'
+      })
+    };
+
+    return this.http.post<ApiResponse>(`${environment.urls.api}/user/signup`, user, options).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError((error) => this.handleError(error))
+    );
+  }
+
   // tslint:disable-next-line:typedef
   protected handleError(error: any) {
     const response = error.error as ApiResponse;

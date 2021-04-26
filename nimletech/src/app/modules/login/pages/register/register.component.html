@@ -2,5 +2,13 @@
 <app-register-view
   (submitEvent)="onRegister($event)"
   (backToLoginEvent)="onBackToLoginPage()"
+  [registerError]="registerError"
 >
 </app-register-view>
+
+<kendo-dialog title="Sign up successfully" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
+  <p style="margin: 30px; text-align: center;">Your account now can sign in</p>
+  <kendo-dialog-actions>
+      <button kendoButton (click)="close('yes')" primary="true">OK</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

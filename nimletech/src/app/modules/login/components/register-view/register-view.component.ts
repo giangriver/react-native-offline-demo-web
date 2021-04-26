@@ -20,7 +20,7 @@ const userNameKey = 'username';
 export class RegisterViewComponent implements OnInit, OnDestroy {
   @Output() backToLoginEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() submitEvent: EventEmitter<any> = new EventEmitter<any>();
-  registerError: string;
+  @Input() registerError: string;
   isResetCompleted = false;
 
   registerForm!: FormGroup;
