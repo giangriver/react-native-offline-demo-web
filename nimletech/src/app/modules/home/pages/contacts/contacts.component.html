@@ -6,10 +6,11 @@
 	  	</div>
 	</div>
 	<div class="actions">
-    	<a class="btn btn-primary" [routerLink]="['/contacts/add']">
+    	<a class="btn btn-primary" [routerLink]="['/contact/add']">
         	<span class="fa fa-plus" aria-hidden="true"></span> Add contact
     	</a>
     </div>
+    
     <div class="row">
     	<div class="col-md-12 shadow">
 	    	<table class="table table-borderless">
@@ -23,7 +24,10 @@
 			    <tbody>
 			        <tr *ngFor="let contact of onSearch()">
 			            <td class="content">
-			            	<img src="{{contact.photo ? 'https://maritimedemo.herokuapp.com/' + contact.photo : 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bloch_sphere.svg/423px-Bloch_sphere.svg.png'}}" alt="..." class="rounded-circle" width="45" height="45" style="margin-right: 10px"> <span>{{contact.name? contact.name : ''}}</span></td>		            		           
+			            	<a routerLink="/contact/detail/{{contact._id}}">
+			            		<img src="{{contact.photo ? 'https://maritimedemo.herokuapp.com/' + contact.photo : 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bloch_sphere.svg/423px-Bloch_sphere.svg.png'}}" alt="..." class="rounded-circle" width="45" height="45" style="margin-right: 10px"> <span>{{contact.name? contact.name : ''}}</span>
+			            	</a>
+			            </td>		            		           
 			            <td class="content"><span>{{(contact.email && contact.email != 'undefined')? contact.email : ''}}</span></td>
 			            <td class="content"><span>{{contact.number? contact.number : ''}}</span></td>
 			        </tr>		                
