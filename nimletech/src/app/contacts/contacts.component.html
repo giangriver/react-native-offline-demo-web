@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="main">
+		<div class="form-group has-search">
+		    <span class="fa fa-search form-control-feedback"></span>
+		    <input type="text" class="form-control" placeholder="Search" [(ngModel)] = "searchTitle" (ngModelChange)="onChangeEvent($event)">
+	  	</div>
+	</div>
+	<div class="actions">
+    	<a class="btn btn-primary" [routerLink]="['/contacts/add']">
+        	<span class="fa fa-plus" aria-hidden="true"></span> Add contact
+    	</a>
+    </div>
+    <div class="row">
+    	<div class="col-md-12 shadow">
+	    	<table class="table table-borderless">
+			    <thead>
+			        <tr>
+			            <th>Name</th>
+			            <th>Email</th>
+			            <th>Phone number</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr *ngFor="let contact of onSearch()">
+			            <td class="content">
+			            	<img src="{{contact.photo ? 'https://maritimedemo.herokuapp.com/' + contact.photo : 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bloch_sphere.svg/423px-Bloch_sphere.svg.png'}}" alt="..." class="rounded-circle" width="45" height="45" style="margin-right: 10px"> <span>{{contact.name? contact.name : ''}}</span></td>		            		           
+			            <td class="content"><span>{{(contact.email && contact.email != 'undefined')? contact.email : ''}}</span></td>
+			            <td class="content"><span>{{contact.number? contact.number : ''}}</span></td>
+			        </tr>		                
+			    </tbody>
+			</table>
+		</div>
+    </div>
+</div>

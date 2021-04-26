@@ -3,10 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { Shell } from './core/shell/shell.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'contact', pathMatch: 'full' },
   Shell.childRoutes([
     {
-      path: 'home',
+      path: 'contact',
       loadChildren: () =>
         import('./modules/home/home.module').then(
           m => m.HomeModule
@@ -15,11 +15,12 @@ const routes: Routes = [
   ]),
 
   // Fallback when no prior route is matched
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: '**', redirectTo: 'contact', pathMatch: 'full' }
 ];
-
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
   })
+
 export class AppRoutingModule { }
+
