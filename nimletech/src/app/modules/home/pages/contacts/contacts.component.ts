@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiResponse } from 'src/app/core/models/apiresponse';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { ContactService } from 'src/app/core/services/contact.service';
 
 import { Contact } from '../../../../core/models/contact';
@@ -13,7 +14,10 @@ export class ContactsComponent implements OnInit {
   contacts: Contact[];
   searchTitle: '';
 
-  constructor(private contactService: ContactService) { }
+  constructor(
+    private contactService: ContactService,
+    private authenService: AuthService
+    ) { }
 
   ngOnInit(): void {
     this.getContacts();
@@ -51,6 +55,10 @@ export class ContactsComponent implements OnInit {
     } else {
       console.log(error.message);
     }
+  }
+
+  logout(): any {
+    this.authenService.logout();
   }
 
 }
