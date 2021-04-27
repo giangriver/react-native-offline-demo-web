@@ -32,6 +32,54 @@ export class ContactService {
     );
   }
 
+  getContact(id): Observable<ApiResponse> {
+    const options = {
+      headers: new HttpHeaders({
+        accept: 'application/json',
+        token: this.auth.getToken()
+      })
+    };
+
+    return this.http.get<ApiResponse>(`${environment.urls.api}/contact/` + id, options).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError((error) => this.handleError(error))
+    );
+  }
+
+  updateContact(id, data): Observable<ApiResponse> {
+    const options = {
+      headers: new HttpHeaders({
+        accept: 'application/json',
+        token: this.auth.getToken()
+      })
+    };
+
+    return this.http.put<ApiResponse>(`${environment.urls.api}/contact/update/` + id, data, options).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError((error) => this.handleError(error))
+    );
+  }
+
+  createContact(data): Observable<ApiResponse> {
+    const options = {
+      headers: new HttpHeaders({
+        accept: 'application/json',
+        token: this.auth.getToken()
+      })
+    };
+
+    return this.http.post<ApiResponse>(`${environment.urls.api}/contact/add`, data, options).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError((error) => this.handleError(error))
+    );
+  }
+
   // tslint:disable-next-line:typedef
   protected handleError(error: any) {
     const response = error.error as ApiResponse;

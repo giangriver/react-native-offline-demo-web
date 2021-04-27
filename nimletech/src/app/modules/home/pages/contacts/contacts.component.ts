@@ -37,8 +37,8 @@ export class ContactsComponent implements OnInit {
   }
 
   onSearch(): any {
-    return this.searchTitle ? this.contacts.filter(item => (item.name.toUpperCase().includes(this.searchTitle.toUpperCase()) ||
-      item.email.toUpperCase().includes(this.searchTitle.toUpperCase()) || item.number.includes(this.searchTitle))) : this.contacts;
+    return this.searchTitle ? this.contacts.filter(item => (item.name && (item.name.toUpperCase().includes(this.searchTitle.toUpperCase())) ||
+      (item.email && item.email.toUpperCase().includes(this.searchTitle.toUpperCase())) || (item.number && item.number.includes(this.searchTitle)))) : this.contacts;
   }
 
   onChangeEvent(event: any): void{
